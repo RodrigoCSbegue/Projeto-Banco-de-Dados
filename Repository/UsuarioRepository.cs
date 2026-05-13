@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Segundo_App_BancoDados.Models;
-using Segundo_App_BancoDados.Repository.Contract;
+using Segundo_App_BancoDados.Repository.Contrato;
 
 namespace Segundo_App_BancoDados.Repository
 {
@@ -43,6 +43,11 @@ namespace Segundo_App_BancoDados.Repository
         }
 
         public IEnumerable<Usuario> ObterTodososUsuarios()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Usuario> ObterTodosUsuarios()
         {
             throw new NotImplementedException();
         }

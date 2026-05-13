@@ -2,11 +2,11 @@
 
 namespace Segundo_App_BancoDados.Repository.Contrato
 {
-    public interface IUserRepository
+    public interface IUsuarioRepository
     {
         // CRUD - Create, Read, Update, Delete
 
-        IEnumerable<User> ObterTodosUsers();
+        IEnumerable<Usuario> ObterTodosUsuarios();
         void Cadastrar(Usuario usuario);
         void Atualizar(Usuario usuario);
         Usuario ObterUsuario(int id);
