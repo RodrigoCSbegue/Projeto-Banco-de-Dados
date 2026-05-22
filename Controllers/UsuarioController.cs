@@ -8,16 +8,14 @@ namespace Segundo_App_BancoDados.Controllers
     {
         private IUsuarioRepository _usuarioRepository;
 
-        public UsuarioController (IUsuarioRepository usuarioRepository)
+        public UsuarioController(IUsuarioRepository usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
         }
-
         public IActionResult Index()
         {
-            return View();
+            return View(_usuarioRepository.ObterTodosUsuarios());
         }
-
         [HttpGet]
         public IActionResult CadastrarUsuario()
         {
