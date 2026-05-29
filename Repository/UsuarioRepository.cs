@@ -16,7 +16,27 @@ namespace Segundo_App_BancoDados.Repository
         }
         public void Atualizar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT * from usuario " +
+                                                    " where IdUsu=@IdUsu", conexao);
+                cmd.Parameters.AddWithValue("@IdUsu", Id);
+
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                Usuario usuario = new Usuario();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dr.Read())
+                {
+                    usuario.IdUsu = Convert.ToInt32(dr["IdUsu"]);
+                    usuario.nomeUsu = (string)(dr["nomeUsu"]);
+                    usuario.Cargo = (string)(dr["Cargo"]);
+                    usuario.DataNasc = Convert.ToDateTime(dr["DataNasc"]);
+                }
+                return usuario;
+            }
         }
 
         public void Cadastrar(Usuario usuario)
@@ -72,12 +92,52 @@ namespace Segundo_App_BancoDados.Repository
                 return UsuarioList;
             }
         }
+        using (var conexao = new MySqlConnection(_conexaoMySQL))
+{
+    conexao.Open();
+    MySqlCommand cmd = new MySqlCommand("SELECT * from usuario " +
+                                        " where IdUsu=@IdUsu", conexao);
+    cmd.Parameters.AddWithValue("@IdUsu", Id);
 
+    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+    MySqlDataReader dr;
+
+    Usuario usuario = new Usuario();
+    dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+    while (dr.Read())
+    {
+        usuario.IdUsu = Convert.ToInt32(dr["IdUsu"]);
+        usuario.nomeUsu = (string)(dr["nomeUsu"]);
+        usuario.Cargo = (string)(dr["Cargo"]);
+        usuario.DataNasc = Convert.ToDateTime(dr["DataNasc"]);
+    }
+    return usuario;
+}
  
 
         public Usuario ObterUsuario(int id)
         {
-            throw new NotImplementedException();
+    using (var conexao = new MySqlConnection(_conexaoMySQL))
+    {
+        conexao.Open();
+        MySqlCommand cmd = new MySqlCommand("SELECT * from usuario " +
+                                            " where IdUsu=@IdUsu", conexao);
+        cmd.Parameters.AddWithValue("@IdUsu", Id);
+
+        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+        MySqlDataReader dr;
+
+        Usuario usuario = new Usuario();
+        dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        while (dr.Read())
+        {
+            usuario.IdUsu = Convert.ToInt32(dr["IdUsu"]);
+            usuario.nomeUsu = (string)(dr["nomeUsu"]);
+            usuario.Cargo = (string)(dr["Cargo"]);
+            usuario.DataNasc = Convert.ToDateTime(dr["DataNasc"]);
         }
+        return usuario;
+    }
+}
     }
 }

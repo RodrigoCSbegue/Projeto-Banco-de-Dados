@@ -6,3 +6,51 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+@model IEnumerable<Segundo_App_BancoDados.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> @Html.DisplayNameFor(model => model.IdUsu) </th>
+            <th scope="col"> @Html.DisplayNameFor(model => model.nomeUsu) </th>
+            <th scope="col"> @Html.DisplayNameFor(model => model.cargo) </th>
+            <th scope="col">@Html.DisplayNameFor(model => model.dataNasc) </th>
+            <th> scope="col"> ação </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Usuario usuario in Model)
+        {
+            <tr>
+                <td>@usuario.IdUsu</td>
+                <td>@usuario.nomeUsu </td>
+                <td>@usuario.cargo</td>
+                <td>@usuario.dataNasc.ToString("dd/MM/yyyy")</td>
+                <td>
+
+                    <button type="button" class="btn btn-warning">
+                        @Html.ActionLink("Editar", "AtualizarUsuario", new { id = usuario.IdUsu })
+                    </button>
+
+                    <button type="button" class="btn btn-secondary">
+                        @Html.ActionLink("Detalhes", "DetalhesUsuario", new { id = usuario.IdUsu })
+                    </button>
+
+                    <button type="button" class="btn btn-danger">
+                        @Html.ActionLink("Excluir", "ExcluirUsuario", new { id = usuario.IdUsu},
+                        new { onclick = "return confirm('Deseja realmente excluir?');" })
+                </button>
+            </td>
+        </tr>
+                }
+    </tbody>
+</table>
